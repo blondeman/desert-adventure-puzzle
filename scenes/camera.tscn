@@ -5,11 +5,11 @@
 [sub_resource type="SeparationRayShape3D" id="SeparationRayShape3D_1akh0"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_u5kg4"]
-sky_top_color = Color(0.44827336, 0, 0.020479394, 1)
-sky_horizon_color = Color(0.9918913, 0.4787029, 0.39408922, 1)
+sky_top_color = Color(0.43798003, 0.37136883, 1, 1)
+sky_horizon_color = Color(0.8187515, 0.87515664, 1, 1)
 sky_curve = 0.04459553
 ground_bottom_color = Color(0.16062862, 0.16062862, 0.16062862, 1)
-ground_horizon_color = Color(0.99215686, 0.47843137, 0.39215687, 1)
+ground_horizon_color = Color(0.81960785, 0.8745098, 1, 1)
 ground_curve = 0.014640831
 
 [sub_resource type="Sky" id="Sky_diie0"]
@@ -19,8 +19,9 @@ sky_material = SubResource("ProceduralSkyMaterial_u5kg4")
 background_mode = 2
 sky = SubResource("Sky_diie0")
 ambient_light_source = 3
-ambient_light_color = Color(0.1749846, 0.17498463, 0.1749846, 1)
+ambient_light_color = Color(1, 1, 1, 1)
 ambient_light_sky_contribution = 0.0
+ambient_light_energy = 0.5
 reflected_light_source = 2
 
 [node name="camera_controller" type="SpringArm3D" unique_id=1550201481 groups=["camera_controller"]]

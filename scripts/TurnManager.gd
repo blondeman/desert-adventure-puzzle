@@ -59,7 +59,8 @@ func process_character_attack():
 
 
 func _button_end_turn():
-	set_turn_state(TurnState.CHARACTER_MOVE)
+	if turn_state == TurnState.PLAYER_INPUT:
+		set_turn_state(TurnState.CHARACTER_MOVE)
 
 
 func _set_angle(angle: Vector2):
