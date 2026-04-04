@@ -1,0 +1,326 @@
+[gd_scene format=3 uid="uid://dmwmxpi0evrsr"]
+
+[ext_resource type="Script" uid="uid://cemehw3i1jpdk" path="res://scripts/TurnManager.gd" id="1_tsdb7"]
+[ext_resource type="Texture2D" uid="uid://cr8tiabrmuknw" path="res://icon.svg" id="1_u6owk"]
+[ext_resource type="Script" uid="uid://c16owcdw4o4ap" path="res://scripts/AngleSelector.gd" id="3_2ir6k"]
+[ext_resource type="Script" uid="uid://b0pu1qax6w0g4" path="res://scripts/SelectNode.gd" id="4_mxq3h"]
+
+[sub_resource type="SeparationRayShape3D" id="SeparationRayShape3D_tsdb7"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_btabf"]
+size = Vector3(1.1, 0.6, 1.1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_tsdb7"]
+size = Vector3(1, 0.5, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_btabf"]
+shading_mode = 0
+albedo_color = Color(0.22959325, 0.22959325, 0.22959322, 1)
+grow_amount = 0.147
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_qjfnw"]
+size = Vector3(0.3, 0.3, 0.3)
+
+[sub_resource type="BoxMesh" id="BoxMesh_2ir6k"]
+size = Vector3(0.25, 0.25, 0.25)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qjfnw"]
+shading_mode = 0
+albedo_color = Color(0.49803922, 0.49803922, 0.49803922, 1)
+grow_amount = 0.147
+
+[node name="turn_manager" type="Control" unique_id=564025251 node_paths=PackedStringArray("preview_camera_spring")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_tsdb7")
+preview_camera_spring = NodePath("MarginContainer/SubViewportContainer/SubViewport/SpringArm3D")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1687145444]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -16.0
+offset_top = -32.0
+offset_right = 16.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/margin_bottom = 16
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer" unique_id=903892770]
+visible = false
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="button_angle_15" type="TextureButton" parent="MarginContainer/HBoxContainer" unique_id=1747146281]
+layout_mode = 2
+texture_normal = ExtResource("1_u6owk")
+
+[node name="button_angle_30" type="TextureButton" parent="MarginContainer/HBoxContainer" unique_id=963495120]
+layout_mode = 2
+texture_normal = ExtResource("1_u6owk")
+
+[node name="button_angle_45" type="TextureButton" parent="MarginContainer/HBoxContainer" unique_id=490418661]
+layout_mode = 2
+texture_normal = ExtResource("1_u6owk")
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="MarginContainer" unique_id=20233075 node_paths=PackedStringArray("camera")]
+layout_mode = 2
+script = ExtResource("3_2ir6k")
+camera = NodePath("SubViewport/SpringArm3D/Camera3D")
+
+[node name="SubViewport" type="SubViewport" parent="MarginContainer/SubViewportContainer" unique_id=952247276]
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(200, 200)
+render_target_update_mode = 4
+
+[node name="SpringArm3D" type="SpringArm3D" parent="MarginContainer/SubViewportContainer/SubViewport" unique_id=1996481621]
+transform = Transform3D(0.6908824, 0.43003735, -0.5811621, 0, 0.80385685, 0.5948228, 0.72296715, -0.4109526, 0.5553705, 0, 0, 0)
+collision_mask = 0
+shape = SubResource("SeparationRayShape3D_tsdb7")
+spring_length = 4.0
+
+[node name="Camera3D" type="Camera3D" parent="MarginContainer/SubViewportContainer/SubViewport/SpringArm3D" unique_id=1068379142]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4)
+cull_mask = 2
+size = 3.0
+
+[node name="visuals" type="Node3D" parent="MarginContainer/SubViewportContainer/SubViewport" unique_id=320560448]
+
+[node name="plane" type="Area3D" parent="MarginContainer/SubViewportContainer/SubViewport/visuals" unique_id=2137180100]
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("4_mxq3h")
+base_color = Color(0.3380995, 0.33809972, 0.33809966, 1)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MarginContainer/SubViewportContainer/SubViewport/visuals/plane" unique_id=1145532572]
+shape = SubResource("BoxShape3D_btabf")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="MarginContainer/SubViewportContainer/SubViewport/visuals/plane" unique_id=155934984]
+layers = 2
+mesh = SubResource("BoxMesh_tsdb7")
+skeleton = NodePath("../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_btabf")
+
+[node name="south" type="Node3D" parent="MarginContainer/SubViewportContainer/SubViewport/visuals" unique_id=438528153]
+transform = Transform3D(1, 0, 0, -2.9802322e-08, 1, 0, 0, 0, 0.9999999, 0, 0, 0)
+
+[node name="15" type="Area3D" parent="MarginContainer/SubViewportContainer/SubViewport/visuals/south" unique_id=1347721508]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1)
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("4_mxq3h")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MarginContainer/SubViewportContainer/SubViewport/visuals/south/15" unique_id=1639038684]
+shape = SubResource("BoxShape3D_qjfnw")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="MarginContainer/SubViewportContainer/SubViewport/visuals/south/15" unique_id=1962605253]
+layers = 2
+mesh = SubResource("BoxMesh_2ir6k")
+skeleton = NodePath("../../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_qjfnw")
+
+[node name="30" type="Area3D" parent="MarginContainer/SubViewportContainer/SubViewport/visuals/south" unique_id=1731201131]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.5)
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("4_mxq3h")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MarginContainer/SubViewportContainer/SubViewport/visuals/south/30" unique_id=1683842450]
+shape = SubResource("BoxShape3D_qjfnw")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="MarginContainer/SubViewportContainer/SubViewport/visuals/south/30" unique_id=1755226904]
+layers = 2
+mesh = SubResource("BoxMesh_2ir6k")
+skeleton = NodePath("../../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_qjfnw")
+
+[node name="45" type="Area3D" parent="MarginContainer/SubViewportContainer/SubViewport/visuals/south" unique_id=525651306]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2)
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("4_mxq3h")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MarginContainer/SubViewportContainer/SubViewport/visuals/south/45" unique_id=2115301360]
+shape = SubResource("BoxShape3D_qjfnw")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="MarginContainer/SubViewportContainer/SubViewport/visuals/south/45" unique_id=1021361795]
+layers = 2
+mesh = SubResource("BoxMesh_2ir6k")
+skeleton = NodePath("../../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_qjfnw")
+
+[node name="east" type="Node3D" parent="MarginContainer/SubViewportContainer/SubViewport/visuals" unique_id=1242429590]
+transform = Transform3D(1, 0, 0, -2.9802322e-08, 1, 0, 0, 0, 0.9999999, 0, 0, 0)
+
+[node name="15" type="Area3D" parent="MarginContainer/SubViewportContainer/SubViewport/visuals/east" unique_id=1558037324]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0)
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("4_mxq3h")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MarginContainer/SubViewportContainer/SubViewport/visuals/east/15" unique_id=882112918]
+shape = SubResource("BoxShape3D_qjfnw")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="MarginContainer/SubViewportContainer/SubViewport/visuals/east/15" unique_id=719969852]
+layers = 2
+mesh = SubResource("BoxMesh_2ir6k")
+skeleton = NodePath("../../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_qjfnw")
+
+[node name="30" type="Area3D" parent="MarginContainer/SubViewportContainer/SubViewport/visuals/east" unique_id=371660469]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0, 0)
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("4_mxq3h")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MarginContainer/SubViewportContainer/SubViewport/visuals/east/30" unique_id=1255381571]
+shape = SubResource("BoxShape3D_qjfnw")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="MarginContainer/SubViewportContainer/SubViewport/visuals/east/30" unique_id=881547217]
+layers = 2
+mesh = SubResource("BoxMesh_2ir6k")
+skeleton = NodePath("../../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_qjfnw")
+
+[node name="45" type="Area3D" parent="MarginContainer/SubViewportContainer/SubViewport/visuals/east" unique_id=419128644]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 0)
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("4_mxq3h")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MarginContainer/SubViewportContainer/SubViewport/visuals/east/45" unique_id=559710484]
+shape = SubResource("BoxShape3D_qjfnw")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="MarginContainer/SubViewportContainer/SubViewport/visuals/east/45" unique_id=1891677171]
+layers = 2
+mesh = SubResource("BoxMesh_2ir6k")
+skeleton = NodePath("../../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_qjfnw")
+
+[node name="north" type="Node3D" parent="MarginContainer/SubViewportContainer/SubViewport/visuals" unique_id=1689857118]
+transform = Transform3D(1, 0, 0, -2.9802322e-08, 1, 0, 0, 0, 0.9999999, 0, 0, 0)
+
+[node name="15" type="Area3D" parent="MarginContainer/SubViewportContainer/SubViewport/visuals/north" unique_id=355366305]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("4_mxq3h")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MarginContainer/SubViewportContainer/SubViewport/visuals/north/15" unique_id=515240377]
+shape = SubResource("BoxShape3D_qjfnw")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="MarginContainer/SubViewportContainer/SubViewport/visuals/north/15" unique_id=1388863330]
+layers = 2
+mesh = SubResource("BoxMesh_2ir6k")
+skeleton = NodePath("../../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_qjfnw")
+
+[node name="30" type="Area3D" parent="MarginContainer/SubViewportContainer/SubViewport/visuals/north" unique_id=1701782431]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.5)
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("4_mxq3h")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MarginContainer/SubViewportContainer/SubViewport/visuals/north/30" unique_id=1054747872]
+shape = SubResource("BoxShape3D_qjfnw")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="MarginContainer/SubViewportContainer/SubViewport/visuals/north/30" unique_id=700281950]
+layers = 2
+mesh = SubResource("BoxMesh_2ir6k")
+skeleton = NodePath("../../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_qjfnw")
+
+[node name="45" type="Area3D" parent="MarginContainer/SubViewportContainer/SubViewport/visuals/north" unique_id=63921281]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2)
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("4_mxq3h")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MarginContainer/SubViewportContainer/SubViewport/visuals/north/45" unique_id=1071979607]
+shape = SubResource("BoxShape3D_qjfnw")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="MarginContainer/SubViewportContainer/SubViewport/visuals/north/45" unique_id=53973478]
+layers = 2
+mesh = SubResource("BoxMesh_2ir6k")
+skeleton = NodePath("../../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_qjfnw")
+
+[node name="west" type="Node3D" parent="MarginContainer/SubViewportContainer/SubViewport/visuals" unique_id=307792795]
+transform = Transform3D(1, 0, 0, -2.9802322e-08, 1, 0, 0, 0, 0.9999999, 0, 0, 0)
+
+[node name="15" type="Area3D" parent="MarginContainer/SubViewportContainer/SubViewport/visuals/west" unique_id=1358254965]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 0)
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("4_mxq3h")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MarginContainer/SubViewportContainer/SubViewport/visuals/west/15" unique_id=927790637]
+shape = SubResource("BoxShape3D_qjfnw")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="MarginContainer/SubViewportContainer/SubViewport/visuals/west/15" unique_id=222010772]
+layers = 2
+mesh = SubResource("BoxMesh_2ir6k")
+skeleton = NodePath("../../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_qjfnw")
+
+[node name="30" type="Area3D" parent="MarginContainer/SubViewportContainer/SubViewport/visuals/west" unique_id=361362433]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 0, 0)
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("4_mxq3h")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MarginContainer/SubViewportContainer/SubViewport/visuals/west/30" unique_id=1824101402]
+shape = SubResource("BoxShape3D_qjfnw")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="MarginContainer/SubViewportContainer/SubViewport/visuals/west/30" unique_id=2140748581]
+layers = 2
+mesh = SubResource("BoxMesh_2ir6k")
+skeleton = NodePath("../../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_qjfnw")
+
+[node name="45" type="Area3D" parent="MarginContainer/SubViewportContainer/SubViewport/visuals/west" unique_id=1767439225]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 0)
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("4_mxq3h")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MarginContainer/SubViewportContainer/SubViewport/visuals/west/45" unique_id=1236279124]
+shape = SubResource("BoxShape3D_qjfnw")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="MarginContainer/SubViewportContainer/SubViewport/visuals/west/45" unique_id=1733262559]
+layers = 2
+mesh = SubResource("BoxMesh_2ir6k")
+skeleton = NodePath("../../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_qjfnw")
+
+[node name="MarginContainer2" type="MarginContainer" parent="." unique_id=312217677]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -32.0
+offset_top = -32.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="button_turn" type="TextureButton" parent="MarginContainer2" unique_id=393431013]
+layout_mode = 2
+texture_normal = ExtResource("1_u6owk")
+
+[connection signal="pressed" from="MarginContainer/HBoxContainer/button_angle_15" to="." method="_set_angle" binds= [15.0]]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/button_angle_30" to="." method="_set_angle" binds= [30.0]]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/button_angle_45" to="." method="_set_angle" binds= [45.0]]
+[connection signal="pressed" from="MarginContainer2/button_turn" to="." method="_button_end_turn"]

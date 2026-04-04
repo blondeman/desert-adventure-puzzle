@@ -1,0 +1,34 @@
+[gd_scene format=3 uid="uid://iavsdrab136b"]
+
+[ext_resource type="Script" uid="uid://koefdl8lopu0" path="res://scripts/CameraController.gd" id="1_u5kg4"]
+
+[sub_resource type="SeparationRayShape3D" id="SeparationRayShape3D_1akh0"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_u5kg4"]
+sky_top_color = Color(0.44827336, 0, 0.020479394, 1)
+sky_horizon_color = Color(0.9918913, 0.4787029, 0.39408922, 1)
+sky_curve = 0.04459553
+ground_bottom_color = Color(0.16062862, 0.16062862, 0.16062862, 1)
+ground_horizon_color = Color(0.99215686, 0.47843137, 0.39215687, 1)
+ground_curve = 0.014640831
+
+[sub_resource type="Sky" id="Sky_diie0"]
+sky_material = SubResource("ProceduralSkyMaterial_u5kg4")
+
+[sub_resource type="Environment" id="Environment_u5kg4"]
+background_mode = 2
+sky = SubResource("Sky_diie0")
+ambient_light_source = 3
+ambient_light_color = Color(0.1749846, 0.17498463, 0.1749846, 1)
+ambient_light_sky_contribution = 0.0
+reflected_light_source = 2
+
+[node name="camera_controller" type="SpringArm3D" unique_id=1550201481 groups=["camera_controller"]]
+collision_mask = 0
+shape = SubResource("SeparationRayShape3D_1akh0")
+spring_length = 10.0
+script = ExtResource("1_u5kg4")
+
+[node name="camera" type="Camera3D" parent="." unique_id=2017140261]
+cull_mask = 1048573
+environment = SubResource("Environment_u5kg4")
