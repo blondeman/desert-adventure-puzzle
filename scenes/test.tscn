@@ -4,7 +4,8 @@
 [ext_resource type="PackedScene" uid="uid://dmwmxpi0evrsr" path="res://scenes/turn_manager.tscn" id="2_8uh7m"]
 [ext_resource type="Script" uid="uid://w8mqgn1bneus" path="res://scripts/MapRotator.gd" id="3_6uqi0"]
 [ext_resource type="PackedScene" uid="uid://c4defcex3jpy" path="res://scenes/object.tscn" id="4_74lek"]
-[ext_resource type="Script" uid="uid://bbwadq1ydmud3" path="res://scenes/ObjectManager.gd" id="4_j5jx5"]
+[ext_resource type="Script" uid="uid://bbwadq1ydmud3" path="res://scripts/ObjectManager.gd" id="4_j5jx5"]
+[ext_resource type="Script" uid="uid://klwh1dvuqt14" path="res://scripts/PhysicsManager.gd" id="4_lpvoh"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_mf4mk"]
 size = Vector3(10, 1, 10)
@@ -44,15 +45,19 @@ shadow_enabled = true
 
 [node name="map_rotator" type="Node" parent="." unique_id=1848860776 node_paths=PackedStringArray("map")]
 script = ExtResource("3_6uqi0")
-map = NodePath("../rotation_objects")
+map = NodePath("../visual_layer")
 
-[node name="rotation_objects" type="Node3D" parent="." unique_id=168656222]
+[node name="rotation_objects" type="Node3D" parent="." unique_id=168656222 node_paths=PackedStringArray("object_manager", "map", "map_visuals")]
+script = ExtResource("4_lpvoh")
+object_manager = NodePath("objects")
+map = NodePath("map")
+map_visuals = NodePath("../visual_layer")
 
 [node name="objects" type="Node3D" parent="rotation_objects" unique_id=1166028391]
 script = ExtResource("4_j5jx5")
 
 [node name="object" parent="rotation_objects/objects" unique_id=1949033308 instance=ExtResource("4_74lek")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.4066634, 3.6988263, 0)
 
 [node name="map" type="Node3D" parent="rotation_objects" unique_id=285492333]
 
@@ -109,6 +114,8 @@ shape = SubResource("BoxShape3D_ppyta")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="rotation_objects/map/block5" unique_id=780879195]
 mesh = SubResource("BoxMesh_ykrsh")
+
+[node name="visual_layer" type="Node3D" parent="." unique_id=1960257428]
 
 [connection signal="preview_rotation" from="turn_manager" to="map_rotator" method="_on_turn_manager_preview_rotation"]
 [connection signal="state_changed_character_move" from="turn_manager" to="rotation_objects/objects" method="move"]

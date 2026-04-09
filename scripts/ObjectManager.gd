@@ -1,3 +1,4 @@
+class_name ObjectManager
 extends Node3D
 
 var objects: Array[SlidingObject]

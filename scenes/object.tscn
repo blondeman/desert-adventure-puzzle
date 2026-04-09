@@ -1,6 +1,9 @@
 [gd_scene format=3 uid="uid://c4defcex3jpy"]
 
-[ext_resource type="Script" uid="uid://p8j702cadyxp" path="res://scenes/SlidingObject.gd" id="1_pkda2"]
+[ext_resource type="Script" uid="uid://p8j702cadyxp" path="res://scripts/SlidingObject.gd" id="1_pkda2"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_pkda2"]
+friction = 0.0
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_pkda2"]
 size = Vector3(0.8, 0.8, 0.8)
@@ -11,8 +14,13 @@ size = Vector3(0.8, 0.8, 0.8)
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_egkf8"]
 albedo_color = Color(1, 0.4, 1, 1)
 
-[node name="object" type="RigidBody3D" unique_id=1619628622]
+[node name="object" type="RigidBody3D" unique_id=1619628622 node_paths=PackedStringArray("mesh")]
+axis_lock_angular_x = true
+axis_lock_angular_y = true
+axis_lock_angular_z = true
+physics_material_override = SubResource("PhysicsMaterial_pkda2")
 script = ExtResource("1_pkda2")
+mesh = NodePath("MeshInstance3D")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=582251586]
 shape = SubResource("BoxShape3D_pkda2")
