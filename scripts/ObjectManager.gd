@@ -14,3 +14,9 @@ func move(direction: Vector2):
 	var move_direction = direction / angle_to_direction_multiplier
 	for object in objects:
 		object.move(move_direction)
+
+
+func display_pointers(direction: Vector2):
+	var move_direction = direction / angle_to_direction_multiplier
+	for object in objects:
+		object.display_pointers(move_direction)

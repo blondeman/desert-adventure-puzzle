@@ -8,10 +8,10 @@
 [ext_resource type="Script" uid="uid://klwh1dvuqt14" path="res://scripts/PhysicsManager.gd" id="4_lpvoh"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_mf4mk"]
-size = Vector3(10, 1, 10)
+size = Vector3(15, 1, 15)
 
 [sub_resource type="BoxMesh" id="BoxMesh_37kl0"]
-size = Vector3(10, 1, 10)
+size = Vector3(15, 1, 15)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_8uh7m"]
 size = Vector3(1, 2, 1)
@@ -58,6 +58,9 @@ script = ExtResource("4_j5jx5")
 
 [node name="object" parent="rotation_objects/objects" unique_id=1949033308 instance=ExtResource("4_74lek")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.4066634, 3.6988263, 0)
+
+[node name="object2" parent="rotation_objects/objects" unique_id=1619628622 instance=ExtResource("4_74lek")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.949255, 0.62957335, -2.140192)
 
 [node name="map" type="Node3D" parent="rotation_objects" unique_id=285492333]
 
@@ -118,4 +121,5 @@ mesh = SubResource("BoxMesh_ykrsh")
 [node name="visual_layer" type="Node3D" parent="." unique_id=1960257428]
 
 [connection signal="preview_rotation" from="turn_manager" to="map_rotator" method="_on_turn_manager_preview_rotation"]
+[connection signal="preview_rotation" from="turn_manager" to="rotation_objects/objects" method="display_pointers"]
 [connection signal="state_changed_character_move" from="turn_manager" to="rotation_objects/objects" method="move"]

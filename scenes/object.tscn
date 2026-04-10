@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://c4defcex3jpy"]
 
 [ext_resource type="Script" uid="uid://p8j702cadyxp" path="res://scripts/SlidingObject.gd" id="1_pkda2"]
+[ext_resource type="PackedScene" uid="uid://cqo3q7ph3051m" path="res://scenes/object_pointer.tscn" id="2_cbfvs"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_pkda2"]
 friction = 0.0
@@ -14,17 +15,24 @@ size = Vector3(0.8, 0.8, 0.8)
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_egkf8"]
 albedo_color = Color(1, 0.4, 1, 1)
 
-[node name="object" type="RigidBody3D" unique_id=1619628622 node_paths=PackedStringArray("mesh")]
+[node name="object" type="RigidBody3D" unique_id=1619628622 node_paths=PackedStringArray("visuals", "pointer_parent")]
 axis_lock_angular_x = true
 axis_lock_angular_y = true
 axis_lock_angular_z = true
 physics_material_override = SubResource("PhysicsMaterial_pkda2")
 script = ExtResource("1_pkda2")
-mesh = NodePath("MeshInstance3D")
+visuals = NodePath("visuals")
+pointer_parent = NodePath("visuals/pointers")
+pointer = ExtResource("2_cbfvs")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=582251586]
 shape = SubResource("BoxShape3D_pkda2")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1738237201]
+[node name="visuals" type="Node3D" parent="." unique_id=219144211]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="visuals" unique_id=1738237201]
 mesh = SubResource("BoxMesh_egkf8")
+skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_egkf8")
+
+[node name="pointers" type="Node3D" parent="visuals" unique_id=550261139]

@@ -19,7 +19,7 @@ func split_map():
 
 func split_objects():
 	for object in object_manager.objects:
-		var mesh = object.find_children("*", "MeshInstance3D", true, false)[0]
+		var mesh = object.visuals
 		var global_pos = mesh.global_position
 		var global_rot = mesh.global_rotation
 		mesh.get_parent().remove_child(mesh)
@@ -30,8 +30,8 @@ func split_objects():
 func _process(delta: float) -> void:
 	for object in object_manager.objects:
 		var visual_space = collision_to_visual_space(object.global_position, object.global_rotation)
-		object.mesh.global_position = visual_space.position
-		object.mesh.global_rotation = visual_space.rotation
+		object.visuals.global_position = visual_space.position
+		object.visuals.global_rotation = visual_space.rotation
 
 func collision_to_visual_space(pos: Vector3, rot: Vector3) -> Dictionary:
 	var local_pos = map.to_local(pos)
