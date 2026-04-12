@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://cstyj5c48mncp"]
+
+[ext_resource type="PackedScene" uid="uid://c4defcex3jpy" path="res://nodes/object.tscn" id="1_bcywq"]
+[ext_resource type="Script" uid="uid://cp6s47557tf4d" path="res://scripts/character/Health.gd" id="2_2dj2q"]
+[ext_resource type="Script" uid="uid://csq686iurd5nw" path="res://scripts/character/HealthLabel.gd" id="3_03upm"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_t23dj"]
+transparency = 1
+depth_test = 1
+albedo_color = Color(0.29411766, 0.29411766, 0.29411766, 0.6509804)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bcywq"]
+next_pass = SubResource("StandardMaterial3D_t23dj")
+albedo_color = Color(0.37075377, 0.7209999, 1, 1)
+
+[node name="character" unique_id=1619628622 instance=ExtResource("1_bcywq")]
+
+[node name="MeshInstance3D" parent="visuals" parent_id_path=PackedInt32Array(219144211) index="0" unique_id=1738237201]
+surface_material_override/0 = SubResource("StandardMaterial3D_bcywq")
+
+[node name="healthlabel" type="Label3D" parent="visuals" parent_id_path=PackedInt32Array(219144211) index="2" unique_id=782135547]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, 0)
+pixel_size = 0.01
+billboard = 1
+no_depth_test = true
+text = "HP: 100"
+script = ExtResource("3_03upm")
+
+[node name="health" type="Node" parent="." index="2" unique_id=1623149904]
+script = ExtResource("2_2dj2q")
+
+[connection signal="on_health_changed" from="health" to="visuals/healthlabel" method="set_health"]

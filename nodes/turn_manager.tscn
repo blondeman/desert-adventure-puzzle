@@ -1,9 +1,9 @@
 [gd_scene format=3 uid="uid://dmwmxpi0evrsr"]
 
-[ext_resource type="Script" uid="uid://cemehw3i1jpdk" path="res://scripts/TurnManager.gd" id="1_tsdb7"]
+[ext_resource type="Script" uid="uid://cemehw3i1jpdk" path="res://scripts/control/TurnManager.gd" id="1_tsdb7"]
 [ext_resource type="Texture2D" uid="uid://cr8tiabrmuknw" path="res://icon.svg" id="1_u6owk"]
-[ext_resource type="Script" uid="uid://c16owcdw4o4ap" path="res://scripts/AngleSelector.gd" id="3_2ir6k"]
-[ext_resource type="Script" uid="uid://b0pu1qax6w0g4" path="res://scripts/SelectNode.gd" id="4_mxq3h"]
+[ext_resource type="Script" uid="uid://c16owcdw4o4ap" path="res://scripts/control/AngleSelector.gd" id="3_2ir6k"]
+[ext_resource type="Script" uid="uid://b0pu1qax6w0g4" path="res://scripts/control/SelectNode.gd" id="4_mxq3h"]
 
 [sub_resource type="SeparationRayShape3D" id="SeparationRayShape3D_tsdb7"]
 

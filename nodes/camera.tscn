@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://iavsdrab136b"]
 
-[ext_resource type="Script" uid="uid://koefdl8lopu0" path="res://scripts/CameraController.gd" id="1_u5kg4"]
+[ext_resource type="Script" uid="uid://koefdl8lopu0" path="res://scripts/control/CameraController.gd" id="1_u5kg4"]
 
 [sub_resource type="SeparationRayShape3D" id="SeparationRayShape3D_1akh0"]
 

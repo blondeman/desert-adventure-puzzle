@@ -1,0 +1,10 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://ckn43tau1y4f2"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_t23dj"]
+transparency = 1
+depth_test = 1
+albedo_color = Color(0.29411766, 0.29411766, 0.29411766, 0.6509804)
+
+[resource]
+next_pass = SubResource("StandardMaterial3D_t23dj")
+albedo_color = Color(1, 0.4, 1, 1)
